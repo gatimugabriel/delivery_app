@@ -1,19 +1,26 @@
-
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import 'providers/theme_provider.dart';
 import 'utils/router.dart';
-import 'supabase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  try {
+    await dotenv.load(fileName: ".env"); // Load environment variables
+  } catch (e) {
+    throw Exception('Error loading .env file: $e'); // Print error if any
+  }
+
+  final String supabaseUrl = dotenv.env['SUPABASE_URL'] ?? '';
+  final String supabaseAnonKey = dotenv.env['SUPABASE_ANON_KEY'] ?? '';
+
   await Supabase.initialize(
-    url: 'https://your-supabase-url.supabase.co',
-    anonKey:
-        'your-supabase-anon-key',
+    url: supabaseUrl,
+    anonKey: supabaseAnonKey,
     debug: true,
   );
 
@@ -56,6 +63,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkTheme,
           themeMode: themeProvider.themeMode,
           routerConfig: router,
+          debugShowCheckedModeBanner: false,
         );
       },
     );
