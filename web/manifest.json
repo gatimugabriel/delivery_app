@@ -1,6 +1,6 @@
 {
-    "name": "myapp",
-    "short_name": "myapp",
+    "name": "dropdash",
+    "short_name": "dropdash",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

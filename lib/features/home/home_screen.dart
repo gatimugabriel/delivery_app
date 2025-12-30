@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../widgets/add_item_dialog.dart';
+import '../../core/widgets/add_item_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

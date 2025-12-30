@@ -1,0 +1,4 @@
+-- Use this file to seed your database with test data.
+-- Example:
+-- insert into public.profiles (id, username)
+-- values ('00000000-0000-0000-0000-000000000000', 'test_user');

@@ -1,14 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../screens/onboarding_screen.dart';
-import '../screens/login_screen.dart';
-import '../screens/signup_screen.dart';
-import '../screens/home_screen.dart';
-// import '../screens/profile_screen.dart';
-import '../screens/settings_screen.dart';
-import '../widgets/bottom_nav_bar.dart';
+
+import '../core/widgets/bottom_nav_bar.dart';
+import '../features/auth/presentation/login_screen.dart';
+import '../features/auth/presentation/onboarding_screen.dart';
+import '../features/auth/presentation/signup_screen.dart';
+import '../features/home/home_screen.dart';
+import '../features/profile/settings_screen.dart'; 
+
 
 final supabase = Supabase.instance.client;
 

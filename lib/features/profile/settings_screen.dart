@@ -1,14 +1,13 @@
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../providers/theme_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'data/theme_provider.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeProvider);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Settings')),
@@ -19,7 +18,7 @@ class SettingsScreen extends StatelessWidget {
             ListTile(
               title: const Text('Theme'),
               trailing: DropdownButton<ThemeMode>(
-                value: themeProvider.themeMode,
+                value: themeMode,
                 items: const [
                   DropdownMenuItem(
                     value: ThemeMode.system,
@@ -36,11 +35,7 @@ class SettingsScreen extends StatelessWidget {
                 ],
                 onChanged: (value) {
                   if (value != null) {
-                    if (value == ThemeMode.system) {
-                      themeProvider.setSystemTheme();
-                    } else {
-                      themeProvider.toggleTheme();
-                    }
+                    ref.read(themeProvider.notifier).setTheme(value);
                   }
                 },
               ),
